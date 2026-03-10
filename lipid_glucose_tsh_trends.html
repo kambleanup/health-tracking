@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Metrics Trends - Anup Kamble</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 3px solid #FF6B6B;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .chart-container {
+            position: relative;
+            margin: 40px 0;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-card.ldl { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .metric-card.hdl { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .metric-card.chol { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .metric-card.trig { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .metric-card.glucose { background: linear-gradient(135deg, #FFB347 0%, #FF6347 100%); }
+        .metric-card.tsh { background: linear-gradient(135deg, #98D8C8 0%, #6DA886 100%); }
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .metric-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .metric-status {
+            font-size: 12px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        .status-good { color: #90EE90; }
+        .status-warning { color: #FFD700; }
+        .status-danger { color: #FF6B6B; }
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 13px;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .danger {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #721c24;
+        }
+        .good {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Health Metrics Trends - 14 Years (2011-2025)</h1>
+
+        <h2>Lipid Panel Metrics</h2>
+        <div class="summary">
+            <div class="metric-card ldl">
+                <div class="metric-label">LDL (Bad Cholesterol)</div>
+                <div class="metric-value">141</div>
+                <div class="metric-status status-danger">Oct 2025</div>
+                <div class="metric-status">Goal: <100</div>
+            </div>
+            <div class="metric-card hdl">
+                <div class="metric-label">HDL (Good Cholesterol)</div>
+                <div class="metric-value">38</div>
+                <div class="metric-status status-danger">Oct 2025</div>
+                <div class="metric-status">Goal: >40</div>
+            </div>
+            <div class="metric-card chol">
+                <div class="metric-label">Total Cholesterol</div>
+                <div class="metric-value">207</div>
+                <div class="metric-status status-warning">Oct 2025</div>
+                <div class="metric-status">Goal: <200</div>
+            </div>
+            <div class="metric-card trig">
+                <div class="metric-label">Triglycerides</div>
+                <div class="metric-value">153</div>
+                <div class="metric-status status-warning">Oct 2025</div>
+                <div class="metric-status">Goal: <150</div>
+            </div>
+        </div>
+
+        <h2>Glucose & Thyroid Metrics</h2>
+        <div class="summary">
+            <div class="metric-card glucose">
+                <div class="metric-label">Glucose (Fasting)</div>
+                <div class="metric-value">87</div>
+                <div class="metric-status status-good">Oct 2025</div>
+                <div class="metric-status">Goal: 65-110</div>
+            </div>
+            <div class="metric-card tsh">
+                <div class="metric-label">TSH (Thyroid)</div>
+                <div class="metric-value">3.01</div>
+                <div class="metric-status status-good">Mar 2025</div>
+                <div class="metric-status">Goal: 0.4-4.1</div>
+            </div>
+        </div>
+
+        <div class="danger">
+            <strong>WARNING:</strong> Your lipid profile (2025) shows significant cardiovascular risk with LDL 41 points above goal and HDL below threshold. Good news: Glucose and thyroid function are normal. Please consult your physician about statin therapy.
+        </div>
+
+        <h2>Lipid Panel Charts</h2>
+
+        <div class="chart-container">
+            <canvas id="ldlChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="hdlChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="cholChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="trigChart"></canvas>
+        </div>
+
+        <h2>Glucose & Thyroid Charts</h2>
+
+        <div class="chart-container">
+            <canvas id="glucoseChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="tshChart"></canvas>
+        </div>
+
+        <h2>Complete Data Table</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Glucose</th>
+                <th>Total Chol</th>
+                <th>LDL</th>
+                <th>HDL</th>
+                <th>Trig</th>
+                <th>TSH</th>
+                <th>Overall Status</th>
+            </tr>
+            <tr>
+                <td>2014-01-01</td>
+                <td>93</td>
+                <td>188</td>
+                <td>111</td>
+                <td>42</td>
+                <td>174</td>
+                <td>4.520</td>
+                <td>Elevated</td>
+            </tr>
+            <tr>
+                <td>2015-01-01</td>
+                <td>95</td>
+                <td>199</td>
+                <td>134</td>
+                <td>40</td>
+                <td>123</td>
+                <td>3.8</td>
+                <td>Mixed</td>
+            </tr>
+            <tr>
+                <td>2016-01-01</td>
+                <td>91</td>
+                <td>174</td>
+                <td>111</td>
+                <td>45</td>
+                <td>89</td>
+                <td>5.3</td>
+                <td>BEST</td>
+            </tr>
+            <tr>
+                <td>2018-01-01</td>
+                <td>97</td>
+                <td>192</td>
+                <td>116</td>
+                <td>45</td>
+                <td>154</td>
+                <td>4.9</td>
+                <td>Fair</td>
+            </tr>
+            <tr>
+                <td>2022-01-01</td>
+                <td>93</td>
+                <td>206</td>
+                <td>123</td>
+                <td>51</td>
+                <td>159</td>
+                <td>3.520</td>
+                <td>Deteriorating</td>
+            </tr>
+            <tr>
+                <td>2023-02-20</td>
+                <td>94</td>
+                <td>180</td>
+                <td>111</td>
+                <td>40</td>
+                <td>144</td>
+                <td>2.620</td>
+                <td>Fair</td>
+            </tr>
+            <tr>
+                <td>2024-01-01</td>
+                <td>96</td>
+                <td>200</td>
+                <td>123</td>
+                <td>46</td>
+                <td>153</td>
+                <td>5.3</td>
+                <td>Poor</td>
+            </tr>
+            <tr>
+                <td>2025-03-13</td>
+                <td>95</td>
+                <td>225</td>
+                <td>155</td>
+                <td>40</td>
+                <td>162</td>
+                <td>3.01</td>
+                <td>WORST</td>
+            </tr>
+            <tr>
+                <td>2025-10-03</td>
+                <td>87</td>
+                <td>207</td>
+                <td>141</td>
+                <td>38</td>
+                <td>153</td>
+                <td>—</td>
+                <td>CRITICAL</td>
+            </tr>
+        </table>
+
+        <h2>Analysis Summary</h2>
+
+        <div class="good">
+            <strong>POSITIVE:</strong> Glucose control is excellent and consistent (87-97 mg/dL). TSH is within normal range (2.6-5.3), indicating good thyroid function. No diabetes or thyroid disorder present.
+        </div>
+
+        <div class="danger">
+            <strong>CONCERN:</strong> Lipid panel has significantly deteriorated, especially 2025. LDL climbed from 111 (2016) to 141 (Oct 2025). HDL dropped from 45 (2016) to 38 (Oct 2025). This increases cardiovascular risk substantially.
+        </div>
+
+        <div class="note">
+            <strong>Recommendations:</strong>
+            <ul>
+                <li>Schedule cardiology consultation for cardiovascular risk assessment</li>
+                <li>Discuss statin therapy with physician (current LDL warrants medication)</li>
+                <li>Implement Mediterranean diet (reduce saturated fats)</li>
+                <li>Daily aerobic exercise (30-60 min, 5 days/week)</li>
+                <li>Stress management and adequate sleep</li>
+                <li>Re-check lipids in 6-8 weeks after lifestyle/medication changes</li>
+                <li>Continue glucose and thyroid monitoring (currently normal)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const ctx1 = document.getElementById('ldlChart').getContext('2d');
+        const ldlChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25', 'Oct 25'],
+                datasets: [{
+                    label: 'LDL Cholesterol',
+                    data: [111, 134, 111, 116, 123, 111, 123, 155, 141],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#FF6B6B',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'LDL Cholesterol Trend (Target: <100)',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 160,
+                        title: { display: true, text: 'mg/dL' }
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('hdlChart').getContext('2d');
+        const hdlChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25', 'Oct 25'],
+                datasets: [{
+                    label: 'HDL Cholesterol (Good)',
+                    data: [42, 40, 45, 45, 51, 40, 46, 40, 38],
+                    borderColor: '#4ECDC4',
+                    backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#4ECDC4',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'HDL Cholesterol Trend (Target: >40) - HIGHER IS BETTER',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 60,
+                        title: { display: true, text: 'mg/dL' }
+                    }
+                }
+            }
+        });
+
+        const ctx3 = document.getElementById('cholChart').getContext('2d');
+        const cholChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25', 'Oct 25'],
+                datasets: [{
+                    label: 'Total Cholesterol',
+                    data: [188, 199, 174, 192, 206, 180, 200, 225, 207],
+                    borderColor: '#FFD700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#FFD700',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Cholesterol Trend (Target: <200)',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 240,
+                        title: { display: true, text: 'mg/dL' }
+                    }
+                }
+            }
+        });
+
+        const ctx4 = document.getElementById('trigChart').getContext('2d');
+        const trigChart = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25', 'Oct 25'],
+                datasets: [{
+                    label: 'Triglycerides',
+                    data: [174, 123, 89, 154, 159, 144, 153, 162, 153],
+                    borderColor: '#95E1D3',
+                    backgroundColor: 'rgba(149, 225, 211, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#95E1D3',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Triglycerides Trend (Target: <150)',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 180,
+                        title: { display: true, text: 'mg/dL' }
+                    }
+                }
+            }
+        });
+
+        const ctx5 = document.getElementById('glucoseChart').getContext('2d');
+        const glucoseChart = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25', 'Oct 25'],
+                datasets: [{
+                    label: 'Fasting Glucose',
+                    data: [93, 95, 91, 97, 93, 94, 96, 95, 87],
+                    borderColor: '#FF8C00',
+                    backgroundColor: 'rgba(255, 140, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#FF8C00',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Fasting Glucose Trend (Target: 65-110)',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 120,
+                        title: { display: true, text: 'mg/dL' }
+                    }
+                }
+            }
+        });
+
+        const ctx6 = document.getElementById('tshChart').getContext('2d');
+        const tshChart = new Chart(ctx6, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2018', '2022', '2023', '2024', 'Mar 25'],
+                datasets: [{
+                    label: 'TSH (Thyroid Stimulating Hormone)',
+                    data: [4.520, 3.8, 5.3, 4.9, 3.520, 2.620, 5.3, 3.01],
+                    borderColor: '#6DA886',
+                    backgroundColor: 'rgba(109, 168, 134, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#6DA886',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'TSH Trend (Target: 0.4-4.1 uIU/mL)',
+                        font: { size: 16, weight: 'bold' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 6,
+                        title: { display: true, text: 'uIU/mL' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

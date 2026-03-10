@@ -1,0 +1,146 @@
+[
+  {
+    "file": "blood_urine_tests_18Dec2011.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2011\\blood_urine_tests_18Dec2011.pdf",
+    "raw_date": null,
+    "standardized_date": "2011-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "LabResults_AK_2012.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2012\\LabResults_AK_2012.pdf",
+    "raw_date": null,
+    "standardized_date": "2012-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "AK2014_Labs.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2014\\AK2014_Labs.pdf",
+    "raw_date": null,
+    "standardized_date": "2014-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "Letter; Lab Results Male - Boyd2015.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2015\\Letter; Lab Results Male - Boyd2015.pdf",
+    "raw_date": null,
+    "standardized_date": "2015-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "Anup Kamble Labs 2016.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2016\\Anup Kamble Labs 2016.pdf",
+    "raw_date": null,
+    "standardized_date": "2016-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "Anup Kamble Lab Results2018.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2018\\Anup Kamble Lab Results2018.pdf",
+    "raw_date": null,
+    "standardized_date": "2018-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "AKLABS2022.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2022\\AKLABS2022.pdf",
+    "raw_date": null,
+    "standardized_date": "2022-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "ASK_LABS_2024.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2024\\ASK_LABS_2024.pdf",
+    "raw_date": null,
+    "standardized_date": "2024-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "CBC wAutoDiff_Mar132025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\CBC wAutoDiff_Mar132025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "CMPSerumorPlasma_Mar132025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\CMPSerumorPlasma_Mar132025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "HbA1c_Mar132025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\HbA1c_Mar132025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "hemoglobingastrointestinalstool_Mar212025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\hemoglobingastrointestinalstool_Mar212025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "LipidPanelSerum_Mar132025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\LipidPanelSerum_Mar132025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "TSH_Mar132025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Mar2025\\TSH_Mar132025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "CBC wAutoDiff_Oct032025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Oct2025\\CBC wAutoDiff_Oct032025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "CMPSerumorPlasma_Oct032025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Oct2025\\CMPSerumorPlasma_Oct032025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "LipidPanelSerum_Oct032025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Oct2025\\LipidPanelSerum_Oct032025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  },
+  {
+    "file": "VitaminD_Oct032025.pdf",
+    "path": "C:\\Projects\\health\\ASK\\2025\\Oct2025\\VitaminD_Oct032025.pdf",
+    "raw_date": null,
+    "standardized_date": "2025-01-01",
+    "confidence": "low (year only)",
+    "note": "\"Could not resolve authentication method. Expected either api_key or auth_token to be set. Or for one of the `X-Api-Key` or `Authorization` headers to be explicitly omitted\""
+  }
+]

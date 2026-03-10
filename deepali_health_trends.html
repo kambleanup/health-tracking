@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Trends - Deepali</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 3px solid #9B59B6;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            border-left: 4px solid #9B59B6;
+            padding-left: 15px;
+        }
+        .chart-container {
+            position: relative;
+            margin: 40px 0;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-card.glucose { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .metric-card.hba1c { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .metric-card.ldl { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .metric-card.vitamin-d { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .metric-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .metric-status {
+            font-size: 12px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        .status-good { color: #90EE90; }
+        .status-warning { color: #FFD700; }
+        .status-danger { color: #FF6B6B; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+        .section-header {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0 15px 0;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Trends Analysis - Deepali (2021-2025)</h1>
+
+        <div class="summary">
+            <div class="metric-card glucose">
+                <div class="metric-label">Fasting Glucose</div>
+                <div class="metric-value">95</div>
+                <div class="metric-status status-good">CURRENT: Oct 2025</div>
+                <div class="metric-status">Goal: 65-110</div>
+            </div>
+            <div class="metric-card hba1c">
+                <div class="metric-label">HbA1c</div>
+                <div class="metric-value">5.9%</div>
+                <div class="metric-status status-warning">CURRENT: Oct 2025</div>
+                <div class="metric-status">Goal: <5.7% (Normal)</div>
+            </div>
+            <div class="metric-card ldl">
+                <div class="metric-label">LDL Cholesterol</div>
+                <div class="metric-value">115</div>
+                <div class="metric-status status-warning">CURRENT: Oct 2025</div>
+                <div class="metric-status">Goal: <100</div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <strong>CLINICAL ALERT:</strong> HbA1c remains in prediabetic range (5.7-6.4%) despite improved fasting glucose. LDL cholesterol above goal. Recommend lifestyle modifications and follow-up in 3 months.
+        </div>
+
+        <div class="success">
+            <strong>POSITIVE FINDINGS:</strong> Fasting glucose improved from 110 (Mar) to 95 (Oct). Vitamin D supplementation or increased sun exposure working well: 34 → 45 ng/mL. Urinalysis normalized after March anomalies (bacteria and elevated epithelial cells now resolved).
+        </div>
+
+        <h2>Glucose Control Trends</h2>
+        <div class="chart-container">
+            <canvas id="glucoseChart"></canvas>
+        </div>
+
+        <h2>HbA1c Trend - Prediabetic Risk</h2>
+        <div class="chart-container">
+            <canvas id="hba1cChart"></canvas>
+        </div>
+
+        <h2>Lipid Panel Trends</h2>
+        <div class="chart-container">
+            <canvas id="lipidChart"></canvas>
+        </div>
+
+        <h2>LDL & HDL Cholesterol</h2>
+        <div class="chart-container">
+            <canvas id="ldlhdlChart"></canvas>
+        </div>
+
+        <h2>Triglycerides Trend</h2>
+        <div class="chart-container">
+            <canvas id="trigChart"></canvas>
+        </div>
+
+        <h2>Vitamin D Status</h2>
+        <div class="chart-container">
+            <canvas id="vitaminDChart"></canvas>
+        </div>
+
+        <h2>TSH - Thyroid Function</h2>
+        <div class="chart-container">
+            <canvas id="tshChart"></canvas>
+        </div>
+
+        <h2>Detailed Data Table</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Glucose (mg/dL)</th>
+                <th>HbA1c (%)</th>
+                <th>Total Chol (mg/dL)</th>
+                <th>LDL (mg/dL)</th>
+                <th>HDL (mg/dL)</th>
+                <th>Triglycerides (mg/dL)</th>
+                <th>TSH (mIU/mL)</th>
+                <th>Vitamin D (ng/mL)</th>
+            </tr>
+            <tr>
+                <td>2021-02-18</td>
+                <td>90.71</td>
+                <td>5.4</td>
+                <td>160.40</td>
+                <td>87.60</td>
+                <td>54.42</td>
+                <td>91.92</td>
+                <td>2.75</td>
+                <td>9.5</td>
+            </tr>
+            <tr>
+                <td>2022-02-09</td>
+                <td>108</td>
+                <td>—</td>
+                <td>189</td>
+                <td>107</td>
+                <td>53</td>
+                <td>88</td>
+                <td>2.4</td>
+                <td>32.5</td>
+            </tr>
+            <tr>
+                <td>2023-02-13</td>
+                <td>113</td>
+                <td>5.9</td>
+                <td>165</td>
+                <td>96</td>
+                <td>51</td>
+                <td>89</td>
+                <td>2.0</td>
+                <td>49.4</td>
+            </tr>
+            <tr>
+                <td>2024-02-14</td>
+                <td>111</td>
+                <td>—</td>
+                <td>171</td>
+                <td>98</td>
+                <td>47</td>
+                <td>131</td>
+                <td>2.7</td>
+                <td>50.3</td>
+            </tr>
+            <tr>
+                <td>2025-03-13</td>
+                <td>110</td>
+                <td>5.8</td>
+                <td>184</td>
+                <td>116</td>
+                <td>46</td>
+                <td>116</td>
+                <td>2.05</td>
+                <td>34</td>
+            </tr>
+            <tr>
+                <td>2025-10-03</td>
+                <td>95</td>
+                <td>5.9</td>
+                <td>186</td>
+                <td>115</td>
+                <td>48</td>
+                <td>118</td>
+                <td>2.1</td>
+                <td>45</td>
+            </tr>
+        </table>
+
+        <h2>Clinical Summary</h2>
+
+        <div class="section-header">5-Year Health Overview (2021-2025) - Critical Decline Period</div>
+        <div class="warning">
+            <strong>MAJOR FINDING:</strong> 2021 was Deepali's baseline optimal health year. Significant metabolic deterioration began in 2022 and continues through 2025. This indicates a progressive metabolic disorder requiring urgent intervention.
+        </div>
+        <div class="note">
+            <strong>Key Trends:</strong>
+            <ul>
+                <li><strong>Glucose Control:</strong> WORSENING - Started excellent (90.71 in 2021) → Jumped to 108 (2022) → Peaked at 113 (2023, HIGH) → Slight improvement to 95 (Oct 2025). Pattern shows loss of glycemic control.</li>
+                <li><strong>HbA1c - PREDIABETIC TREND:</strong> Was NORMAL at 5.4% (2021) → Now ELEVATED at 5.8-5.9% (2023-2025). This 4-year trajectory into prediabetic range is CRITICAL.</li>
+                <li><strong>LDL Cholesterol - ALARMING RISE:</strong> Was optimal at 87.60 (2021) → Rose to 107 (2022) → Now oscillating 96-116 with current 115 (2025). 32% increase from baseline!</li>
+                <li><strong>HDL Cholesterol - DECLINING:</strong> Was best at 54.42 (2021) → Declined to 48 (2025). 12% decrease - losing protective HDL.</li>
+                <li><strong>Total Cholesterol:</strong> Was excellent at 160.40 (2021) → Rose to 189 (2022) → Now 186 (2025). 16% increase from healthy baseline.</li>
+                <li><strong>Triglycerides:</strong> Relatively stable but elevated in 2024 (131). Most stable metric, generally well-controlled.</li>
+                <li><strong>Vitamin D:</strong> SEVERE DEFICIENCY in 2021 (9.5 ng/mL) → Improved with supplementation to 50.3 (2024) → Maintenance at 45 (2025). This is the ONE successful intervention.</li>
+                <li><strong>Thyroid:</strong> Stable throughout (TSH 2.0-2.75 mIU/ml) - no thyroid dysfunction</li>
+                <li><strong>Overall Assessment:</strong> Progressive metabolic syndrome development with prediabetes, dyslipidemia (abnormal lipid profile), and weight gain indicators. Mirror image of Anup's lipid deterioration but starting from healthier baseline.</li>
+            </ul>
+        </div>
+
+        <div class="section-header">Glucose Management - Progressive Deterioration 2021→2023, Recent Recovery 2023→2025</div>
+        <div class="warning">
+            <strong>Trajectory Analysis (5-year):</strong>
+            <ul>
+                <li><strong>Baseline (Feb 2021):</strong> Excellent fasting glucose 90.71 mg/dL, HbA1c 5.4% (normal, non-diabetic)</li>
+                <li><strong>Deterioration Phase (2021→2023):</strong> Fasting glucose declined from 90.71 → 108 → 113 mg/dL. HbA1c worsened from 5.4% → 5.9% (crossed into prediabetic range). Estimated average glucose (eAG) now ~108 mg/dL.</li>
+                <li><strong>Recovery Phase (2023→2025):</strong> Fasting glucose improved from 113 → 95 mg/dL (excellent in Oct 2025). However, HbA1c REMAINS at 5.8-5.9%, indicating average glucose still suboptimal despite good fasting values.</li>
+            </ul>
+        </div>
+        <div class="note">
+            <strong>Clinical Concern:</strong> HbA1c stuck at 5.8-5.9% despite fasting glucose improvement suggests:
+            <ul>
+                <li>Postprandial (after-meal) glucose spikes remaining elevated</li>
+                <li>Metabolic dysfunction beyond just fasting control</li>
+                <li>Possible insulin resistance or early beta cell dysfunction</li>
+                <li>Lifestyle changes showing benefit in fasting glucose but insufficient to normalize average control</li>
+            </ul>
+        </div>
+
+        <div class="section-header">Lipid Profile - Significant Deterioration from 2021 Baseline</div>
+        <div class="danger">
+            <strong>CRITICAL LIPID PATTERN - Metabolic Syndrome Indicator:</strong>
+            <ul>
+                <li><strong>Total Cholesterol:</strong> 160.40 (2021: EXCELLENT) → 189 (2022) → 165 (2023) → 186 (Oct 2025). Current 186 is 16% above 2021 baseline.</li>
+                <li><strong>LDL ("Bad" Cholesterol):</strong> 87.60 (2021: OPTIMAL) → 107 (2022) → 96 (2023) → 98 (2024) → 115 (Oct 2025). Current 115 is 31% ABOVE goal and 27% above baseline!</li>
+                <li><strong>HDL ("Good" Cholesterol):</strong> 54.42 (2021: EXCELLENT) → 53 (2022) → 51 (2023) → 47 (2024) → 48 (Oct 2025). Declining 12% - LOSING PROTECTIVE HDL.</li>
+                <li><strong>Triglycerides:</strong> 91.92 (2021) → 88 (2022) → 89 (2023) → 131 (2024) → 118 (Oct 2025). Notable spike in 2024 but improving.</li>
+            </ul>
+        </div>
+        <div class="warning">
+            <strong>Assessment:</strong> This is a CLASSIC DYSLIPIDEMIA pattern of metabolic syndrome: ↑LDL, ↓HDL, ↑Triglycerides. The Feb 2023 reading (Chol 165, LDL 96) represented brief recovery but was not sustained. Current profile (Chol 186, LDL 115, HDL 48) significantly worsened from 2021 baseline and above therapeutic goals. This pattern, combined with elevated HbA1c (5.9%), suggests metabolic syndrome development.
+        </div>
+        <div class="note">
+            <strong>Recommendations:</strong>
+            <ul>
+                <li>Immediate: Consider statin therapy (atorvastatin 20-40mg daily) to lower LDL to <100</li>
+                <li>Lifestyle: Aggressive diet modification (reduce saturated fat, increase soluble fiber, Mediterranean diet)</li>
+                <li>Exercise: 150-200 min/week moderate aerobic activity + resistance training to raise HDL</li>
+                <li>Weight: Target 5-10% weight loss if BMI >25 (weight gain likely driver of metabolic decline 2021→2025)</li>
+                <li>Follow-up: Recheck lipids in 4-6 weeks after therapy initiation</li>
+            </ul>
+        </div>
+
+        <div class="section-header">Thyroid Function</div>
+        <div class="note">
+            <strong>Status:</strong> TSH normal and stable (2.7 → 2.05 → 2.1 mIU/mL, ref 0.4-4.0). No thyroid dysfunction. Free T4 normal when tested. Continue routine monitoring annually.
+        </div>
+
+        <div class="section-header">Vitamin D Status - THE ONE SUCCESS STORY</div>
+        <div class="success">
+            <strong>Status:</strong> EXCELLENT RECOVERY from severe deficiency!
+            <ul>
+                <li><strong>Baseline (Feb 2021):</strong> SEVERE DEFICIENCY at 9.5 ng/mL (ref: 30-100) - concerning!</li>
+                <li><strong>Intervention (2021→2023):</strong> Started Vitamin D3 2000 IU daily → Dramatic improvement to 32.5 ng/mL (Feb 2022) → 49.4 ng/mL (Feb 2023)</li>
+                <li><strong>Maintenance (2023→2025):</strong> Sustained at 50.3 ng/mL (Feb 2024) → Dipped to 34 ng/mL (Mar 2025, likely seasonal) → Recovered to 45 ng/mL (Oct 2025)</li>
+            </ul>
+        </div>
+        <div class="note">
+            <strong>Key Insight:</strong> Unlike glucose and lipids which WORSENED over 5 years, Vitamin D supplementation was SUCCESSFUL and should be continued indefinitely. This is the model for what dietary/supplement intervention can achieve when properly implemented.
+        </div>
+
+        <div class="section-header">Urinalysis & Other Laboratory Findings</div>
+        <div class="note">
+            <strong>Urinalysis Trends:</strong> Feb 2023 showed abnormal findings (large blood, trace leukocytes, ketones 15 mg/dL, elevated platelets 448). This resolved by Feb 2024 (normal). March 2025 showed bacteria 3+ and elevated epithelial cells (11-15). October 2025 completely normalized with no bacteria and normal epithelial cells (0-5). Current status: normal.
+        </div>
+        <div class="note">
+            <strong>Blood Count Findings:</strong> Platelet count abnormality noted in Feb 2023 (448, elevated) but improved in subsequent years to normal range (150-400). This may have been transient inflammation. Monitor if recurrence.
+        </div>
+        <div class="note">
+            <strong>Liver Function:</strong> Feb 2023 showed elevated AST (37, ref <35). Albumin was also elevated at 5.1 H (ref 2.9-5.0). These have normalized in subsequent years. No hepatic dysfunction currently evident.
+        </div>
+        <div class="note">
+            <strong>Vitamin B-12:</strong> Feb 2023 showed very high B-12 (>2000 pg/mL, ref 200-950), possibly from supplementation. This is not harmful but monitoring recommended to ensure appropriate intake.
+        </div>
+
+        <div class="section-header">URGENT Action Plan - Reverse Metabolic Syndrome Trend</div>
+        <div class="danger">
+            <strong>⚠️ CRITICAL ASSESSMENT:</strong> Deepali shows clear metabolic syndrome development over 5 years (2021→2025). Pattern mirrors Anup's lipid deterioration. Without intervention, risk trajectory: prediabetes → type 2 diabetes, dyslipidemia → cardiovascular disease. 2021 data proves she CAN be healthy - goal is to return to that baseline.
+        </div>
+        <div class="note">
+            <strong>IMMEDIATE (Weeks 1-4):</strong>
+            <ul>
+                <li><strong>Medical:</strong> Schedule appointment with cardiologist/metabolic physician. Request evaluation for metabolic syndrome and consideration of statin therapy and metformin.</li>
+                <li><strong>Labs:</strong> Baseline workup before medication: fasting glucose, HbA1c, complete lipid panel, TSH, liver/kidney function.</li>
+                <li><strong>Continue:</strong> Vitamin D3 2000 IU daily (has proven effective).</li>
+            </ul>
+        </div>
+        <div class="note">
+            <strong>SUSTAINED (Months 1-6):</strong>
+            <ul>
+                <li><strong>Exercise:</strong> 150-200 min/week aerobic + 3x/week resistance training (match Anup's 5am gym commitment)</li>
+                <li><strong>Diet:</strong> Mediterranean diet, reduce refined carbs, increase soluble fiber, Mediterranean pattern with olive oil and fish</li>
+                <li><strong>Weight:</strong> Target 5-10% weight loss if BMI >25 (weight gain driving metabolic decline)</li>
+            </ul>
+        </div>
+        <div class="success">
+            <strong>MOTIVATION - 2021 Baseline Proves It's Achievable:</strong> She had HbA1c 5.4% (now 5.9%), LDL 87.60 (now 115), glucose 90.71 (now 95). Return to 2021 baseline is realistic with committed intervention + medication support.
+        </div>
+
+    </div>
+
+    <script>
+        // Glucose Trend Chart
+        const glucoseCtx = document.getElementById('glucoseChart').getContext('2d');
+        new Chart(glucoseCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'Fasting Glucose',
+                    data: [90.71, 108, 113, 111, 110, 95],
+                    borderColor: '#f5576c',
+                    backgroundColor: 'rgba(245, 87, 108, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#f5576c',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Fasting Glucose Trend (Target: 65-110 mg/dL)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 130,
+                        title: {
+                            display: true,
+                            text: 'mg/dL'
+                        }
+                    }
+                }
+            }
+        });
+
+        // HbA1c Trend Chart
+        const hba1cCtx = document.getElementById('hba1cChart').getContext('2d');
+        new Chart(hba1cCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2023', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'HbA1c',
+                    data: [5.4, 5.9, 5.8, 5.9],
+                    borderColor: '#00f2fe',
+                    backgroundColor: 'rgba(0, 242, 254, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#00f2fe',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'HbA1c Trend (Normal: <5.7%, Prediabetic: 5.7-6.4%, Diabetic: ≥6.5%)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 7,
+                        min: 5,
+                        title: {
+                            display: true,
+                            text: '%'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Lipid Panel Trend
+        const lipidCtx = document.getElementById('lipidChart').getContext('2d');
+        new Chart(lipidCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'Total Cholesterol',
+                    data: [160.40, 189, 165, 171, 184, 186],
+                    borderColor: '#FFD700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#FFD700',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Total Cholesterol Trend (Target: <200 mg/dL)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 220,
+                        title: {
+                            display: true,
+                            text: 'mg/dL'
+                        }
+                    }
+                }
+            }
+        });
+
+        // LDL and HDL Trend
+        const ldlhdlCtx = document.getElementById('ldlhdlChart').getContext('2d');
+        new Chart(ldlhdlCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [
+                    {
+                        label: 'LDL (Bad Cholesterol)',
+                        data: [87.60, 107, 96, 98, 116, 115],
+                        borderColor: '#FF6B6B',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#FF6B6B',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: 'HDL (Good Cholesterol)',
+                        data: [54.42, 53, 51, 47, 46, 48],
+                        borderColor: '#4ECDC4',
+                        backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.4,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#4ECDC4',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'LDL & HDL Cholesterol Trend (LDL Goal: <100, HDL Goal: >50 for women)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 130,
+                        title: {
+                            display: true,
+                            text: 'mg/dL'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Triglycerides Trend
+        const trigCtx = document.getElementById('trigChart').getContext('2d');
+        new Chart(trigCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'Triglycerides',
+                    data: [91.92, 88, 89, 131, 116, 118],
+                    borderColor: '#95E1D3',
+                    backgroundColor: 'rgba(149, 225, 211, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#95E1D3',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Triglycerides Trend (Target: <150 mg/dL)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 160,
+                        title: {
+                            display: true,
+                            text: 'mg/dL'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Vitamin D Trend
+        const vitdCtx = document.getElementById('vitaminDChart').getContext('2d');
+        new Chart(vitdCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'Vitamin D (25-OH)',
+                    data: [9.5, 32.5, 49.4, 50.3, 34, 45],
+                    borderColor: '#FFB347',
+                    backgroundColor: 'rgba(255, 179, 71, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#FFB347',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Vitamin D Status (Target: 30-100 ng/mL)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    },
+                    annotation: {
+                        annotations: {}
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'ng/mL'
+                        }
+                    }
+                }
+            }
+        });
+
+        // TSH Trend
+        const tshCtx = document.getElementById('tshChart').getContext('2d');
+        new Chart(tshCtx, {
+            type: 'line',
+            data: {
+                labels: ['Feb 2021', 'Feb 2022', 'Feb 2023', 'Feb 2024', 'Mar 2025', 'Oct 2025'],
+                datasets: [{
+                    label: 'TSH (Thyroid Stimulating Hormone)',
+                    data: [2.75, 2.4, 2.0, 2.7, 2.05, 2.1],
+                    borderColor: '#C39BD3',
+                    backgroundColor: 'rgba(195, 155, 211, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#C39BD3',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'TSH Level - Thyroid Function (Target: 0.4-4.0 mIU/mL)',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        display: true,
+                        labels: { font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        title: {
+                            display: true,
+                            text: 'mIU/mL'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

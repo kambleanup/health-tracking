@@ -1,0 +1,50 @@
+# Health Tracking Agent Configuration
+
+# Anthropic API
+anthropic:
+  api_key: "${ANTHROPIC_API_KEY}"  # Set via environment variable
+  model: "claude-opus-4-6"
+  timeout: 60
+
+# Garmin Connect
+garmin:
+  username: "${GARMIN_USERNAME}"
+  password: "${GARMIN_PASSWORD}"
+  sync_enabled: true
+  sync_time: "06:00"  # 24-hour format, in local timezone
+
+# Paths
+paths:
+  vault_root: "C:/Projects/ClaudeCareerAssistant/Obsidian"
+  raw_reports: "C:/Projects/health/raw_reports"
+  agent_root: "C:/Projects/health/agent"
+
+# People to track
+people:
+  - name: "Anup"
+    vault_path: "People/Anup"
+    reports_path: "People/Anup/Reports"
+    metrics_path: "People/Anup/Metrics"
+    summaries_path: "People/Anup/Summaries"
+  - name: "Deepali"
+    vault_path: "People/Deepali"
+    reports_path: "People/Deepali/Reports"
+    metrics_path: "People/Deepali/Metrics"
+    summaries_path: "People/Deepali/Summaries"
+
+# Health metric thresholds for alerts
+thresholds:
+  glucose_high: 120
+  glucose_low: 70
+  systolic_high: 140
+  systolic_low: 90
+  diastolic_high: 90
+  diastolic_low: 60
+  cholesterol_high: 200
+  triglycerides_high: 150
+  a1c_high: 6.5
+
+# Logging
+logging:
+  level: "INFO"
+  log_file: "agent.log"

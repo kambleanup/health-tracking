@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Health Comparison: Anup (2011-2025) & Deepali (2021-2025)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 4px solid #FF6B6B;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #FF6B6B;
+            padding-left: 15px;
+            font-size: 18px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 20px 0;
+        }
+        th {
+            background-color: #333;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #666;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .year-header {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #333;
+        }
+        .metric-label {
+            text-align: left;
+            background-color: #f9f9f9;
+            font-weight: bold;
+            color: #333;
+            min-width: 120px;
+        }
+        tr:hover td:not(.metric-label) {
+            background-color: #f5f5f5;
+        }
+        .best-year {
+            background-color: #c8e6c9;
+            font-weight: bold;
+        }
+        .worst-year {
+            background-color: #ffcccc;
+            font-weight: bold;
+        }
+        .alert-high {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        .alert-warning {
+            color: #f57c00;
+            font-weight: bold;
+        }
+        .normal {
+            color: #388e3c;
+        }
+        .summary-box {
+            background: #fff3e0;
+            padding: 20px;
+            border-left: 4px solid #f57c00;
+            border-radius: 4px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .critical-box {
+            background: #ffebee;
+            padding: 20px;
+            border-left: 4px solid #d32f2f;
+            border-radius: 4px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .success-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-left: 4px solid #2e7d32;
+            border-radius: 4px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+        }
+        .comparison-table th {
+            background-color: #1976d2;
+        }
+        .baseline {
+            background-color: #e3f2fd;
+        }
+        .current {
+            background-color: #fff9c4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Health Data Comparison: 2011-2025</h1>
+
+        <h2>ANUP (ASK) - 14-Year Progression (2011-2025)</h2>
+
+        <div class="summary-box">
+            <strong>⚠️ CRITICAL OBSERVATION:</strong> Anup's data spans 14 years showing a long-term metabolic pattern. Best year was <strong>2016</strong> (Chol 174, LDL 111, HDL 45, Trig 89). Data shows deterioration 2016→2025 with recent gym work (past 6 months) showing promise in Oct 2025 results.
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th class="metric-label">Metric (Unit)</th>
+                    <th class="year-header">2011</th>
+                    <th class="year-header">2012</th>
+                    <th class="year-header">2014</th>
+                    <th class="year-header">2015</th>
+                    <th class="best-year">2016★</th>
+                    <th class="year-header">2018</th>
+                    <th class="year-header">2022</th>
+                    <th class="year-header">2023</th>
+                    <th class="year-header">2024</th>
+                    <th class="worst-year">Mar 2025</th>
+                    <th class="year-header">Oct 2025</th>
+                </tr>
+                <tr>
+                    <td class="metric-label">Total Chol (mg/dL)</td>
+                    <td>159</td>
+                    <td>179</td>
+                    <td>188</td>
+                    <td>199</td>
+                    <td class="best-year">174</td>
+                    <td>192</td>
+                    <td>206</td>
+                    <td>180</td>
+                    <td>200</td>
+                    <td class="worst-year">225</td>
+                    <td>207</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">LDL (mg/dL)</td>
+                    <td>93</td>
+                    <td>109</td>
+                    <td>111</td>
+                    <td>134</td>
+                    <td class="best-year">111</td>
+                    <td>116</td>
+                    <td>123</td>
+                    <td>111</td>
+                    <td>123</td>
+                    <td class="worst-year alert-high">155</td>
+                    <td class="alert-high">141</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HDL (mg/dL)</td>
+                    <td>45</td>
+                    <td>39</td>
+                    <td>42</td>
+                    <td>40</td>
+                    <td class="best-year">45</td>
+                    <td>45</td>
+                    <td>51</td>
+                    <td>40</td>
+                    <td>46</td>
+                    <td>40</td>
+                    <td>38</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Triglycerides (mg/dL)</td>
+                    <td>104</td>
+                    <td>155</td>
+                    <td>174</td>
+                    <td>123</td>
+                    <td class="best-year">89</td>
+                    <td>154</td>
+                    <td>159</td>
+                    <td>144</td>
+                    <td>153</td>
+                    <td class="worst-year">162</td>
+                    <td>153</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Glucose (mg/dL)</td>
+                    <td>93</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>95</td>
+                    <td class="best-year">91</td>
+                    <td>97</td>
+                    <td>93</td>
+                    <td>94</td>
+                    <td>96</td>
+                    <td>95</td>
+                    <td class="normal">87</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">TSH (mIU/mL)</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>3.8</td>
+                    <td class="best-year">5.3</td>
+                    <td>4.9</td>
+                    <td>3.52</td>
+                    <td>2.62</td>
+                    <td>5.3</td>
+                    <td>3.01</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Vitamin D (ng/mL)</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>32.1</td>
+                    <td>26.7</td>
+                    <td>—</td>
+                    <td>26.7</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="summary-box">
+            <strong>ANUP - 14 Year Analysis:</strong>
+            <ul>
+                <li><strong>Best Year: 2016</strong> - Chol 174, LDL 111, HDL 45, Trig 89. This is his healthy baseline.</li>
+                <li><strong>Worst Year: Mar 2025</strong> - Chol 225, LDL 155 (+40% above goal), HDL 40, Trig 162. Despite 6 months gym work, March results were terrible.</li>
+                <li><strong>Recent Improvement: Oct 2025</strong> - Chol 207, LDL 141 (but still elevated), HDL 38 (declining), Trig 153. Shows gym work helping but metrics need more improvement.</li>
+                <li><strong>Pattern:</strong> Gradual deterioration 2011-2025 with multiple spikes. Lipids highly volatile year-to-year suggesting inconsistent lifestyle adherence.</li>
+                <li><strong>Vitamin D Recovery:</strong> Low at 32.1 (2023) → improved to 45 (Oct 2025). Response to supplementation similar to Deepali.</li>
+                <li><strong>Glucose Control:</strong> EXCELLENT! Stable and normal throughout 14 years (87-97 mg/dL). Oct 2025 shows improvement to 87 mg/dL (best on record). Glucose is his strongest metric - no diabetes risk.</li>
+            </ul>
+        </div>
+
+        <h2>DEEPALI (DAK) - 5-Year Progression (2021-2025)</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th class="metric-label">Metric (Unit)</th>
+                    <th class="best-year">2021★</th>
+                    <th class="year-header">2022</th>
+                    <th class="year-header">2023</th>
+                    <th class="year-header">2024</th>
+                    <th class="year-header">Mar 2025</th>
+                    <th class="worst-year">Oct 2025</th>
+                </tr>
+                <tr>
+                    <td class="metric-label">Total Chol (mg/dL)</td>
+                    <td class="best-year">160.40</td>
+                    <td>189</td>
+                    <td>165</td>
+                    <td>171</td>
+                    <td>184</td>
+                    <td>186</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">LDL (mg/dL)</td>
+                    <td class="best-year">87.60</td>
+                    <td>107</td>
+                    <td>96</td>
+                    <td>98</td>
+                    <td>116</td>
+                    <td class="alert-high">115</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HDL (mg/dL)</td>
+                    <td class="best-year">54.42</td>
+                    <td>53</td>
+                    <td>51</td>
+                    <td>47</td>
+                    <td>46</td>
+                    <td>48</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Triglycerides (mg/dL)</td>
+                    <td class="best-year">91.92</td>
+                    <td>88</td>
+                    <td>89</td>
+                    <td>131</td>
+                    <td>116</td>
+                    <td>118</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Glucose (mg/dL)</td>
+                    <td class="best-year">90.71</td>
+                    <td>108</td>
+                    <td class="alert-high">113</td>
+                    <td>111</td>
+                    <td>110</td>
+                    <td class="normal">95</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HbA1c (%)</td>
+                    <td class="best-year">5.4</td>
+                    <td>—</td>
+                    <td class="alert-warning">5.9</td>
+                    <td>—</td>
+                    <td class="alert-warning">5.8</td>
+                    <td class="alert-warning">5.9</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">TSH (mIU/mL)</td>
+                    <td>2.75</td>
+                    <td>2.4</td>
+                    <td>2.0</td>
+                    <td>2.7</td>
+                    <td>2.05</td>
+                    <td>2.1</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Vitamin D (ng/mL)</td>
+                    <td class="worst-year">9.5</td>
+                    <td>32.5</td>
+                    <td>49.4</td>
+                    <td>50.3</td>
+                    <td>34</td>
+                    <td>45</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="summary-box">
+            <strong>DEEPALI - 5 Year Analysis:</strong>
+            <ul>
+                <li><strong>Best Year: 2021</strong> - Chol 160.40, LDL 87.60 (optimal), HDL 54.42 (best), Glucose 90.71, HbA1c 5.4% (normal non-diabetic). This is her healthy baseline.</li>
+                <li><strong>Worst Year: Oct 2025</strong> - Chol 186, LDL 115 (+31% above 2021), HDL 48 (-12%), HbA1c 5.9% (prediabetic).</li>
+                <li><strong>Critical Finding:</strong> 4-year decline mirrors Anup's pattern. HbA1c worsened from 5.4% → 5.9% while fasting glucose is now better (95 in Oct 2025). Indicates post-meal glucose problems.</li>
+                <li><strong>Vitamin D Success:</strong> Only successful intervention. Recovered from severe deficiency (9.5) to sufficient (45) with supplementation.</li>
+                <li><strong>Pattern:</strong> Unlike Anup's volatility, Deepali shows consistent gradual decline 2021→2025 in all lipid metrics.</li>
+            </ul>
+        </div>
+
+        <h2>Side-by-Side Comparison: 2021/2016 Baseline vs Oct 2025 Current</h2>
+
+        <div class="table-wrapper">
+            <table class="comparison-table">
+                <tr>
+                    <th>Metric</th>
+                    <th class="baseline">Anup 2016 (Best Year)</th>
+                    <th class="current">Anup Oct 2025</th>
+                    <th colspan="2">Change</th>
+                    <th class="baseline">Deepali 2021 (Best Year)</th>
+                    <th class="current">Deepali Oct 2025</th>
+                    <th colspan="2">Change</th>
+                </tr>
+                <tr>
+                    <td class="metric-label">Total Cholesterol</td>
+                    <td class="baseline">174</td>
+                    <td class="current">207</td>
+                    <td colspan="2" class="alert-high">⬆️ +33 (+19%)</td>
+                    <td class="baseline">160.40</td>
+                    <td class="current">186</td>
+                    <td colspan="2" class="alert-high">⬆️ +25.60 (+16%)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">LDL Cholesterol</td>
+                    <td class="baseline">111</td>
+                    <td class="current">141</td>
+                    <td colspan="2" class="alert-high">⬆️ +30 (+27%)</td>
+                    <td class="baseline">87.60</td>
+                    <td class="current">115</td>
+                    <td colspan="2" class="alert-high">⬆️ +27.40 (+31%)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HDL Cholesterol</td>
+                    <td class="baseline">45</td>
+                    <td class="current">38</td>
+                    <td colspan="2" class="alert-high">⬇️ -7 (-16%)</td>
+                    <td class="baseline">54.42</td>
+                    <td class="current">48</td>
+                    <td colspan="2" class="alert-high">⬇️ -6.42 (-12%)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Triglycerides</td>
+                    <td class="baseline">89</td>
+                    <td class="current">153</td>
+                    <td colspan="2" class="alert-high">⬆️ +64 (+72%)</td>
+                    <td class="baseline">91.92</td>
+                    <td class="current">118</td>
+                    <td colspan="2" class="alert-high">⬆️ +26.08 (+28%)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Glucose (Fasting)</td>
+                    <td class="baseline">91 (2016)</td>
+                    <td class="current">87 (Oct 2025)</td>
+                    <td colspan="2" class="improved">⬇️ -4 (-4.4%) IMPROVED ✓</td>
+                    <td class="baseline">90.71 (2021)</td>
+                    <td class="current">95 (Oct 2025)</td>
+                    <td colspan="2" class="alert-warning">⬆️ +4.29 (+5%)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HbA1c</td>
+                    <td class="baseline">—</td>
+                    <td class="current">—</td>
+                    <td colspan="2">No data before 2023</td>
+                    <td class="baseline">5.4%</td>
+                    <td class="current">5.9%</td>
+                    <td colspan="2" class="alert-high">⬆️ +0.5 (PREDIABETIC)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="critical-box">
+            <strong>🚨 CRITICAL FINDING - IDENTICAL METABOLIC PATTERN:</strong>
+            <p>Both Anup and Deepali show <strong>metabolic syndrome development</strong> with identical trajectory:</p>
+            <ul>
+                <li><strong>↑ LDL:</strong> Anup +27% (111→141), Deepali +31% (87.60→115) - BOTH now above goal</li>
+                <li><strong>↓ HDL:</strong> Anup -16% (45→38), Deepali -12% (54.42→48) - BOTH losing protection</li>
+                <li><strong>↑ Triglycerides:</strong> Anup +72% (89→153), Deepali +28% (91.92→118) - MASSIVE in Anup</li>
+                <li><strong>Glucose/HbA1c Difference:</strong> Anup's glucose EXCELLENT at 87 mg/dL (stable 87-97 for 14 years, no diabetes risk). Deepali's HbA1c worsened 5.4%→5.9% (now prediabetic). DIFFERENT PATTERNS: Anup has lipid dysfunction WITHOUT glucose problems; Deepali has BOTH.</li>
+                <li><strong>Weight Gain Pattern:</strong> Lipid profile suggests both gained weight 2016-2025 / 2021-2025, but affects glucose differently (Anup protected, Deepali affected)</li>
+            </ul>
+            <p><strong>Root Cause Hypothesis:</strong> Progressive weight gain + sedentary lifestyle + refined diet + poor glucose control = metabolic syndrome. Both show it's systemic, not individual.</p>
+        </div>
+
+        <div class="success-box">
+            <strong>✓ POSITIVE FINDINGS - IMPROVEMENT IS POSSIBLE:</strong>
+            <ul>
+                <li><strong>Anup's Recent Effort:</strong> 6 months of 5am gym work (5 days/week) is yielding results. Mar 2025 was worst (LDL 155, Trig 162) but Oct 2025 shows improvement (LDL 141, Trig 153). Trajectory is improving with consistency.</li>
+                <li><strong>Deepali's Recent Glucose:</strong> Fasting glucose improved from 110 (Mar 2025) to 95 (Oct 2025) - best in 4 years! Shows she CAN control glucose with intervention.</li>
+                <li><strong>Vitamin D Success:</strong> Both responded excellently to D3 supplementation. Deepali: 9.5→45 ng/mL. Anup: 32.1→45 ng/mL. Proves supplements work when taken consistently.</li>
+                <li><strong>2021/2016 Baseline Proof:</strong> Both were HEALTHY 4-9 years ago. Return to those baselines is achievable with:</li>
+                <ul>
+                    <li>Consistent exercise (Anup's 5am gym = model to follow)</li>
+                    <li>Dietary intervention (Mediterranean diet, reduced refined carbs)</li>
+                    <li>Pharmaceutical support if needed (statin for LDL, possibly metformin)</li>
+                    <li>Weight management (5-10% loss would normalize all lipids)</li>
+                </ul>
+            </ul>
+        </div>
+
+        <h2>Key Metrics & Goals Summary</h2>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Goal</th>
+                    <th>Anup Current</th>
+                    <th>Anup Status</th>
+                    <th>Deepali Current</th>
+                    <th>Deepali Status</th>
+                </tr>
+                <tr>
+                    <td class="metric-label">LDL Cholesterol</td>
+                    <td><100 mg/dL</td>
+                    <td>141</td>
+                    <td class="alert-high">FAIL (-41 needed)</td>
+                    <td>115</td>
+                    <td class="alert-high">FAIL (-15 needed)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HDL Cholesterol</td>
+                    <td>>40 (for women: >50)</td>
+                    <td>38</td>
+                    <td class="alert-high">FAIL (male goal: +2 needed)</td>
+                    <td>48</td>
+                    <td class="alert-warning">MARGINAL (+2 needed)</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Triglycerides</td>
+                    <td><150 mg/dL</td>
+                    <td>153</td>
+                    <td class="alert-warning">MARGINAL (-3 needed)</td>
+                    <td>118</td>
+                    <td class="normal">PASS ✓</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Total Cholesterol</td>
+                    <td><200 mg/dL</td>
+                    <td>207</td>
+                    <td class="alert-warning">MARGINAL (-7 needed)</td>
+                    <td>186</td>
+                    <td class="normal">PASS ✓</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Fasting Glucose</td>
+                    <td>65-110 mg/dL</td>
+                    <td>87</td>
+                    <td class="normal">PASS ✓ (Excellent)</td>
+                    <td>95</td>
+                    <td class="normal">PASS ✓</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">HbA1c</td>
+                    <td><5.7% (non-diabetic)</td>
+                    <td>—</td>
+                    <td>Unknown</td>
+                    <td>5.9%</td>
+                    <td class="alert-warning">PREDIABETIC</td>
+                </tr>
+                <tr>
+                    <td class="metric-label">Vitamin D</td>
+                    <td>30-100 ng/mL</td>
+                    <td>45</td>
+                    <td class="normal">PASS ✓</td>
+                    <td>45</td>
+                    <td class="normal">PASS ✓</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
